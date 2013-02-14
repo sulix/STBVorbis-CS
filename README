@@ -1,0 +1,29 @@
+STBVorbis-CS: A C# wrapper for stb_vorbis.
+
+License
+-------
+STBVorbis-CS is licensed under the zlib license. stb_vorbis is in the public
+domain.
+
+Note
+----
+STBVorbis-CS is NOT complete: it only provides the bare minimum to get
+something up and running. Patches to add support for more functions are, of
+course, welcome.
+
+How to build
+------------
+Building STBVorbis-CS is simple! Just run:
+
+ make
+
+Both stb_vorbis and STBVorbis-CS will be built. There are also precompiled
+binaries in the binaries directory for x86 and x86_64 systems. These have
+been built with bingcc, so they should work even on very old distros!
+
+Links
+-----
+
+stb_vorbis: http://www.nothings.org/stb_vorbis/
+
+
