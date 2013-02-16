@@ -1,11 +1,23 @@
-all: libstb_vorbis.so STBVorbis.dll
+UNAME = $(shell uname)
 
-libstb_vorbis.so: stb_vorbis.c
-	$(CC) -fPIC -shared -Wl,-soname,libstb_vorbis.so -o libstb_vorbis.so.0 stb_vorbis.c
-	ln -s libstb_vorbis.so.0 libstb_vorbis.so
+ifeq ($(UNAME), Darwin)
+	LIBNAME = libstb_vorbis.dylib
+	LIBNAMEAPI = libstb_vorbis.0.dylib
+	LIBFLAG = -install_name
+else
+	LIBNAME = libstb_vorbis.so
+	LIBNAMEAPI = libstb_vorbis.so.0
+	LIBFLAG = -soname
+endif
+
+all: libstb_vorbis STBVorbis.dll
+
+libstb_vorbis: stb_vorbis.c
+	$(CC) -fPIC -shared -Wl,$(LIBFLAG),$(LIBNAME) -o $(LIBNAMEAPI) stb_vorbis.c
+	ln -s $(LIBNAMEAPI) $(LIBNAME)
 
 STBVorbis.dll: STBVorbis.cs
 	dmcs -out:STBVorbis.dll -target:library	STBVorbis.cs
 
 clean:
-	rm -f libstb_vorbis.so.0 libstb_vorbis.so STBVorbis.dll
+	rm -f $(LIBNAMEAPI) $(LIBNAME) STBVorbis.dll
