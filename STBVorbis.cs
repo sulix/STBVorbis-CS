@@ -92,4 +92,7 @@ public class STBVorbis
 
 	[DllImport(_dll_name, EntryPoint = "stb_vorbis_get_samples_short_interleaved")]
 	extern public static int GetSamplesShortInterleaved(IntPtr f, int num_channels, short[] buffer, int num_shorts);
+
+	[DllImport(_dll_name, EntryPoint = "stb_vorbis_get_samples_float_interleaved")]
+	extern public static int GetSamplesShortInterleaved(IntPtr f, int num_channels, float[] buffer, int num_shorts);
 }
